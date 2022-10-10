@@ -1,0 +1,60 @@
+
+Sub stocks()
+    ' keeping track of all variables for row, stock, yearly change, sum.
+    Dim ticker As String
+    Dim i As Double
+    Dim openprice As Double
+    Dim closingprice As Double
+    Dim percentChange As Double
+    Dim yearlyChange As Double
+    Dim totalVolume As Double
+    Dim sumTableRow As Integer
+    Dim rownum As Double
+    
+    
+
+    Dim ws As Worksheet
+    
+    For Each ws In ThisWorkbook.Worksheets
+        
+        totalVolume = 0
+        ' finding the last non blank cell in the row
+        rownum = Cells(Rows.Count, 1).End(xlUp).Row
+
+        
+        
+        
+        sumTableRow = 2
+        
+        openprice = ws.Cells(2, 3).Value
+        ' Checks if stock in next row is different than current stock
+        For i = 2 To row1
+            ticker = ws.Cells(i, 1).Value
+            If (ticker <> ws.Cells(i + 1, 1).Value) Then
+                totalVolume = totalVolume + ws.Cells(i, 7).Value
+                ' calculates the values
+                closingprice = ws.Cells(i, 6).Value
+                yearlyChange = closingprice - openprice
+                percentChange = yearlyChange / openprice
+                ' writes values to the table
+                ws.Cells(sumTableRow, 9).Value = ticker
+                ws.Cells(sumTableRow, 10).Value = yearlyChange
+                ws.Cells(sumTableRow, 11).Value = percentChange
+                ws.Cells(sumTableRow, 12).Value = totalVolume
+                'formatting the coloring of the tiles
+                If (yealryChange > 0) Then
+                    ws.Cells(sumTableRow, 10).Interior.ColorIndex = 4
+                Else
+                    ws.Cells(sumTableRow, 10).Interior.ColorIndex = 3
+                End If
+                'resetting the sum for the next set of cards
+                totalVolume = 0
+                sumTableRow = sumTableRow + 1
+                
+                openprice = ws.Cells(i + 1, 3).Value
+            Else
+                totalVolume = totalVolume + ws.Cells(i, 7).Value
+            End If
+        Next i
+     Next ws
+End Sub
