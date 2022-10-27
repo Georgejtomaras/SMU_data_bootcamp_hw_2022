@@ -1,0 +1,10 @@
+PyCitySchools Written Report
+
+1) One observation I noticed is that the students in the smaller schools seem to have a larger 
+   average score in both reading and math. The smaller schools also have more students
+   passing both math and reading then the large schools.
+
+
+2) Another thing I noticed is that the average grades in math were on average lower than the grades
+   in reading. So no matter what grade or school you go to math seems to be harder for the students 
+   than reading.
